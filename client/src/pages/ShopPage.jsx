@@ -343,14 +343,14 @@ export default function ShopPage() {
     setSearchParams(params);
   }, [searchParams]);
 
-  const { data, isLoading, isFetching } = useQuery({
+  const { data, isLoading, isFetching, error, isError } = useQuery({
     queryKey: ['products', filters],
     queryFn: () => productAPI.getAll(filters).then(r => r.data),
     keepPreviousData: true,
     staleTime: 2 * 60 * 1000,
   });
 
-  const { data: catData } = useQuery({
+  const { data: catData, error: catError, isError: isCatError } = useQuery({
     queryKey: ['categories'],
     queryFn: () => categoryAPI.getAll().then(r => r.data.categories),
     staleTime: 10 * 60 * 1000,
@@ -361,6 +361,7 @@ export default function ShopPage() {
   const categories = catData || [];
 
   return (
+
     <>
       <Helmet>
         <title>Shop Plants — FLORA Lucknow | Indoor, Outdoor, Rare Plants</title>
@@ -451,6 +452,23 @@ export default function ShopPage() {
 
             {/* Product Grid */}
             <div className="flex-1 min-w-0">
+              {(isError || isCatError) && (
+                <div className="bg-red-50 border border-red-200 text-red-800 p-4 rounded-xl mb-6 shadow-sm">
+                  <h4 className="font-bold text-sm mb-1">⚠️ Shop Page API Error:</h4>
+                  {isError && (
+                    <div className="mb-2">
+                      <p className="text-xs font-semibold">Products Query failed:</p>
+                      <pre className="text-[11px] overflow-x-auto bg-white/50 p-2 rounded border mt-1 max-h-40">{error?.message || error?.toString() || JSON.stringify(error)}</pre>
+                    </div>
+                  )}
+                  {isCatError && (
+                    <div>
+                      <p className="text-xs font-semibold">Categories Query failed:</p>
+                      <pre className="text-[11px] overflow-x-auto bg-white/50 p-2 rounded border mt-1 max-h-40">{catError?.message || catError?.toString() || JSON.stringify(catError)}</pre>
+                    </div>
+                  )}
+                </div>
+              )}
               {isLoading ? (
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                   {Array(9).fill(0).map((_, i) => <ProductCardSkeleton key={i} />)}
