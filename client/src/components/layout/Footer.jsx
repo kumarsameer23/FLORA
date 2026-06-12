@@ -9,8 +9,8 @@ const footerLinks = {
     { label: 'Outdoor Plants', href: '/shop?category=outdoor-plants' },
     { label: 'Flowering Plants', href: '/shop?category=flowering-plants' },
     { label: 'Succulents', href: '/shop?category=succulents' },
-    { label: 'Air Purifying', href: '/shop?category=air-purifying' },
-    { label: 'Rare Plants', href: '/shop?category=rare-plants' },
+    { label: 'Air Purifying', href: '/shop?airPurifying=true' },
+    { label: 'All Collection', href: '/shop' },
   ],
   Company: [
     { label: 'About FLORA', href: '/#about' },

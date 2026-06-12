@@ -20,7 +20,7 @@ import { getWAEnquiryLink } from '../utils/helpers';
  */
 const FORMSPREE_ID = 'mdavwpzn'; // ✅ configured
 const FORMSPREE_URL = `https://formspree.io/f/${FORMSPREE_ID}`;
-const isFormspreeConfigured = FORMSPREE_ID !== 'mdavwpzn';
+const isFormspreeConfigured = FORMSPREE_ID && FORMSPREE_ID !== 'YOUR_FORM_ID';
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);

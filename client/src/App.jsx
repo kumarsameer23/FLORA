@@ -8,6 +8,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import HomePage from './pages/HomePage';
+import ScrollToHash from './components/layout/ScrollToHash';
 
 // Lazy loaded pages
 const ShopPage = lazy(() => import('./pages/ShopPage'));
@@ -100,6 +101,7 @@ export default function App() {
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
+          <ScrollToHash />
           <AppRoutes />
           <Toaster
             position="top-right"
