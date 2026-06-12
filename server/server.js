@@ -4,19 +4,24 @@ const connectDB = require('./src/config/db');
 
 const PORT = process.env.PORT || 5000;
 
-const startServer = async () => {
-  await connectDB();
+// Connect to Database
+connectDB();
+
+if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
   app.listen(PORT, () => {
     console.log(`\n🌿 FLORA Server running on http://localhost:${PORT}`);
     console.log(`📡 Environment: ${process.env.NODE_ENV}`);
     console.log(`🌐 Client: ${process.env.CLIENT_URL}\n`);
   });
-};
-
-startServer();
+}
 
 // Handle unhandled promise rejections
 process.on('unhandledRejection', (err) => {
   console.error('❌ Unhandled Rejection:', err.message);
-  process.exit(1);
+  if (process.env.NODE_ENV !== 'production') {
+    process.exit(1);
+  }
 });
+
+module.exports = app;
+
