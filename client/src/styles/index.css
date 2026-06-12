@@ -1,0 +1,490 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,700&family=Poppins:wght@200;300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+@import "tailwindcss";
+
+/* ───────────────────────────────────────────
+   FLORA Design Tokens
+─────────────────────────────────────────── */
+@theme {
+  --color-ink:        #0d1a0f;
+  --color-forest:     #163320;
+  --color-moss:       #2a5c3f;
+  --color-sage:       #5a8a6a;
+  --color-mint:       #8ec9a2;
+  --color-neon:       #39ff7a;
+  --color-mist:       #e8f2eb;
+  --color-cream:      #f7f3ed;
+  --color-gold:       #c9a84c;
+  --color-gold-light: #e8cc7a;
+  --color-whatsapp:   #25d366;
+
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans:  'Poppins', 'Inter', sans-serif;
+  --font-body:  'Inter', sans-serif;
+
+  --shadow-card:       0 4px 24px rgba(13, 26, 15, 0.08);
+  --shadow-card-hover: 0 20px 60px rgba(13, 26, 15, 0.16);
+  --shadow-gold:       0 8px 30px rgba(201, 168, 76, 0.4);
+  --shadow-wa:         0 8px 30px rgba(37, 211, 102, 0.4);
+  --shadow-neon:       0 0 24px rgba(57, 255, 122, 0.55), 0 0 60px rgba(57, 255, 122, 0.18);
+}
+
+/* ───────────────────────────────────────────
+   Base Reset
+─────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-cream);
+  color: var(--color-ink);
+  overflow-x: hidden;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+/* ───────────────────────────────────────────
+   Scrollbar
+─────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--color-mist); }
+::-webkit-scrollbar-thumb { background: var(--color-sage); border-radius: 3px; }
+
+/* ───────────────────────────────────────────
+   Typography
+─────────────────────────────────────────── */
+.font-serif { font-family: var(--font-serif); }
+.font-sans  { font-family: var(--font-sans); }
+
+.text-display {
+  font-family: var(--font-serif);
+  font-size: clamp(2.6rem, 9vw, 6.5rem);
+  font-weight: 900;
+  line-height: 1.0;
+}
+
+.text-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3.8vw, 3rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-ink);
+}
+
+.text-subheading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 2.5vw, 2rem);
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.text-label {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* ───────────────────────────────────────────
+   Glassmorphism
+─────────────────────────────────────────── */
+.glass {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: var(--shadow-card);
+}
+
+.glass-dark {
+  background: rgba(13, 26, 15, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(142, 201, 162, 0.1);
+}
+
+/* ───────────────────────────────────────────
+   Neon Glow
+─────────────────────────────────────────── */
+.neon-border {
+  border: 1px solid rgba(57, 255, 122, 0.35);
+  box-shadow: 0 0 16px rgba(57, 255, 122, 0.15);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.neon-border:hover {
+  border-color: rgba(57, 255, 122, 0.7);
+  box-shadow: var(--shadow-neon);
+}
+
+.neon-text {
+  color: var(--color-neon);
+  text-shadow: 0 0 12px rgba(57, 255, 122, 0.7), 0 0 30px rgba(57, 255, 122, 0.3);
+}
+
+/* ───────────────────────────────────────────
+   Button System
+─────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 6px;
+  padding: 0.9rem 1.75rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  white-space: nowrap;
+}
+
+.btn-gold {
+  background: var(--color-gold);
+  color: var(--color-ink);
+}
+.btn-gold:hover {
+  background: var(--color-gold-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold);
+}
+
+.btn-forest {
+  background: var(--color-forest);
+  color: #fff;
+}
+.btn-forest:hover {
+  background: var(--color-moss);
+  transform: translateY(-2px);
+}
+
+.btn-ghost {
+  background: transparent;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+}
+.btn-ghost:hover {
+  border-color: var(--color-mint);
+  color: var(--color-mint);
+  transform: translateY(-2px);
+}
+
+.btn-ghost-dark {
+  background: transparent;
+  border: 1.5px solid rgba(42, 92, 63, 0.35);
+  color: var(--color-moss);
+}
+.btn-ghost-dark:hover {
+  border-color: var(--color-moss);
+  background: var(--color-forest);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.btn-wa {
+  background: var(--color-whatsapp);
+  color: #fff;
+  box-shadow: var(--shadow-wa);
+}
+.btn-wa:hover {
+  background: #1da851;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(37, 211, 102, 0.5);
+}
+
+/* ───────────────────────────────────────────
+   Animations
+─────────────────────────────────────────── */
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-ticker {
+  animation: ticker 28s linear infinite;
+  will-change: transform;
+}
+
+@keyframes waPulse {
+  0%, 100% { box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5); }
+  50%       { box-shadow: 0 6px 45px rgba(37, 211, 102, 0.85); }
+}
+.animate-wa-pulse { animation: waPulse 3s ease-in-out infinite; }
+
+@keyframes neonPulse {
+  0%, 100% {
+    text-shadow: 0 0 8px rgba(57, 255, 122, 0.6), 0 0 20px rgba(57, 255, 122, 0.3);
+    opacity: 1;
+  }
+  50% {
+    text-shadow: 0 0 18px rgba(57, 255, 122, 0.95), 0 0 45px rgba(57, 255, 122, 0.55), 0 0 90px rgba(57, 255, 122, 0.2);
+    opacity: 0.88;
+  }
+}
+.animate-neon { animation: neonPulse 2.8s ease-in-out infinite; }
+
+@keyframes leafFloat {
+  0%   { transform: translateY(0) rotate(0deg); }
+  50%  { transform: translateY(-28px) rotate(10deg); }
+  100% { transform: translateY(0) rotate(-5deg); }
+}
+.animate-leaf { animation: leafFloat ease-in-out infinite; }
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.35; transform: scaleY(0.8); }
+  50%       { opacity: 1; transform: scaleY(1); }
+}
+.animate-scroll-pulse { animation: scrollPulse 2.2s ease-in-out infinite; }
+
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to   { background-position: 200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, #e8f2eb 25%, #d4e8da 50%, #e8f2eb 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 6px;
+}
+
+/* ───────────────────────────────────────────
+   Layout Utilities
+─────────────────────────────────────────── */
+.section-pad    { padding: 5rem 0; }
+.section-pad-sm { padding: 3rem 0; }
+
+.container-flora {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 4vw, 3rem);
+}
+
+/* ───────────────────────────────────────────
+   Badge
+─────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.65rem;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 3px;
+}
+
+/* ───────────────────────────────────────────
+   Swiper
+─────────────────────────────────────────── */
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--color-gold) !important;
+  background: rgba(255, 255, 255, 0.96);
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50%;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  transition: box-shadow 0.2s;
+}
+.swiper-button-next:hover,
+.swiper-button-prev:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.2); }
+.swiper-button-next::after,
+.swiper-button-prev::after { font-size: 12px !important; font-weight: 800; }
+.swiper-pagination-bullet-active { background: var(--color-gold) !important; }
+
+/* ───────────────────────────────────────────
+   Form Inputs
+─────────────────────────────────────────── */
+.input-flora {
+  width: 100%;
+  padding: 0.875rem 1.1rem;
+  background: #fff;
+  border: 1.5px solid rgba(90, 138, 106, 0.22);
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--color-ink);
+  line-height: 1.5;
+  transition: border-color 0.22s, box-shadow 0.22s;
+  outline: none;
+  -webkit-appearance: none;
+}
+.input-flora:focus {
+  border-color: var(--color-moss);
+  box-shadow: 0 0 0 3px rgba(42, 92, 63, 0.1);
+}
+.input-flora::placeholder { color: rgba(90,138,106,0.55); }
+
+select.input-flora {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%235a8a6a' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1.2em;
+  padding-right: 2.5rem;
+}
+
+/* ───────────────────────────────────────────
+   Filter Pills
+─────────────────────────────────────────── */
+.filter-pill {
+  background: transparent;
+  border: 1.5px solid rgba(42, 92, 63, 0.2);
+  padding: 0.4rem 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--color-sage);
+  transition: all 0.2s;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: var(--font-sans);
+  font-weight: 500;
+}
+.filter-pill:hover,
+.filter-pill.active {
+  background: var(--color-forest);
+  color: #fff;
+  border-color: var(--color-forest);
+}
+
+/* ───────────────────────────────────────────
+   Focus
+─────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ───────────────────────────────────────────
+   Hero
+─────────────────────────────────────────── */
+.hero-section {
+  min-height: 100svh;
+  min-height: 100dvh;
+}
+
+/* ───────────────────────────────────────────
+   RESPONSIVE — Mobile First
+─────────────────────────────────────────── */
+
+/* Large tablets */
+@media (max-width: 1024px) {
+  .section-pad    { padding: 4rem 0; }
+  .section-pad-sm { padding: 2.5rem 0; }
+}
+
+/* Tablets / small laptops */
+@media (max-width: 768px) {
+  .section-pad    { padding: 3.5rem 0; }
+  .section-pad-sm { padding: 2rem 0; }
+
+  .text-display   {
+    font-size: clamp(2.2rem, 11vw, 3.8rem);
+    line-height: 1.05;
+  }
+
+  .text-heading {
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+  }
+
+
+}
+
+/* Mobile phones */
+@media (max-width: 640px) {
+  .section-pad    { padding: 3rem 0; }
+  .section-pad-sm { padding: 1.75rem 0; }
+  .container-flora { padding: 0 1.125rem; }
+
+  /* Buttons — slightly smaller on mobile */
+  .btn {
+    padding: 0.8rem 1.25rem;
+    font-size: 0.7rem;
+  }
+
+  /* Swiper nav hidden on mobile — use swipe */
+  .swiper-button-next,
+  .swiper-button-prev { display: none !important; }
+
+  /* Swiper add bottom padding for dots */
+  .swiper { padding-bottom: 2.25rem !important; }
+}
+
+/* Very small phones */
+@media (max-width: 400px) {
+  .section-pad    { padding: 2.5rem 0; }
+  .container-flora { padding: 0 0.875rem; }
+
+  .text-display { font-size: clamp(1.9rem, 12vw, 2.8rem); }
+}
+
+/* ───────────────────────────────────────────
+   Product Card Grid
+─────────────────────────────────────────── */
+/* Used in ShopPage and related carousels */
+.product-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 480px)  { .product-grid { gap: 1.125rem; } }
+@media (min-width: 768px)  { .product-grid { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; } }
+@media (min-width: 960px)  { .product-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1280px) { .product-grid { grid-template-columns: repeat(4, 1fr); gap: 1.5rem; } }
+
+/* ───────────────────────────────────────────
+   About + Categories mobile stack
+─────────────────────────────────────────── */
+@media (max-width: 767px) {
+}
+
+/* ───────────────────────────────────────────
+   Navbar — ensure mobile tap targets are big enough
+─────────────────────────────────────────── */
+nav a, nav button {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* But don't force that on text links in mobile menu */
+.mobile-nav-link {
+  min-height: unset;
+  min-width: unset;
+  display: block;
+}
+
+/* ───────────────────────────────────────────
+   Footer mobile
+─────────────────────────────────────────── */
+@media (max-width: 640px) {
+  footer .grid {
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem !important;
+  }
+}
