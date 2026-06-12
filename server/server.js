@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 5000;
 // Connect to Database
 connectDB();
 
-if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+if (!process.env.VERCEL) {
   app.listen(PORT, () => {
     console.log(`\n🌿 FLORA Server running on http://localhost:${PORT}`);
     console.log(`📡 Environment: ${process.env.NODE_ENV}`);
