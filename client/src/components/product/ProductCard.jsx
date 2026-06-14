@@ -148,7 +148,7 @@ export default function ProductCard({ product, dark = false }) {
         transition={{ duration: 0.3 }}
       >
         {/* Image */}
-        <Link to={`/product/${product.slug}`} className="block relative overflow-hidden" style={{ height: '220px' }}>
+        <Link to={`/product/${product.slug}`} className="block relative overflow-hidden" style={{ height: 'clamp(160px, 28vw, 220px)' }}>
           <img
             src={imgError ? FALLBACK_IMG : getOptimizedImageUrl(product.thumbnail || product.images?.[0]?.url || FALLBACK_IMG)}
             alt={product.name}
@@ -234,13 +234,13 @@ export default function ProductCard({ product, dark = false }) {
 
           {/* Footer */}
           <div
-            className="mt-auto pt-3 border-t flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-2"
+            className="mt-auto pt-3 border-t flex flex-col gap-3"
             style={{ borderColor: dark ? 'rgba(255,255,255,0.08)' : '#e8f2eb' }}
           >
-            <div className="min-w-0">
+            <div className="flex items-baseline justify-between gap-2 flex-wrap">
               <div className="flex items-baseline gap-1.5 flex-wrap">
                 <span
-                  style={{ fontFamily: 'var(--font-serif)', color: 'var(--color-forest)' }}
+                  style={{ fontFamily: 'var(--font-serif)', color: dark ? 'var(--color-gold)' : 'var(--color-forest)' }}
                   className="text-xl font-bold"
                 >
                   ₹{finalPrice}
@@ -249,11 +249,11 @@ export default function ProductCard({ product, dark = false }) {
                   <span className={`text-xs line-through ${subTextColor}`}>₹{product.originalPrice}</span>
                 )}
               </div>
-              <div className={`text-xs ${subTextColor}`}>/ plant</div>
+              <span className={`text-xs ${subTextColor}`}>/ plant</span>
             </div>
             <button
               onClick={(e) => { e.preventDefault(); e.stopPropagation(); setQtyModalOpen(true); }}
-              className="btn btn-wa text-xs px-3 py-2.5 w-full sm:w-auto shrink-0 justify-center"
+              className="btn btn-wa text-xs px-3 py-2.5 w-full shrink-0 justify-center"
               aria-label={`Order ${product.name} on WhatsApp`}
             >
               <FaWhatsapp size={14} />

@@ -34,8 +34,8 @@ export default function AboutSection() {
             initial={{ opacity: 0, x: -40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="relative z-10 flex flex-col justify-center w-full h-full bg-ink/15 lg:bg-transparent"
-            style={{ padding: 'clamp(1.5rem, 6vw, 5rem)' }}
+            className="relative z-10 flex flex-col justify-center w-full h-full bg-ink/70 lg:bg-transparent"
+            style={{ padding: 'clamp(2rem, 6vw, 5rem)' }}
           >
             <SectionLabel>Our Story</SectionLabel>
             <h2
@@ -112,8 +112,8 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative z-10 flex flex-col justify-center w-full h-full bg-forest/15 lg:bg-transparent"
-            style={{ padding: 'clamp(1.5rem, 6vw, 4rem)' }}
+            className="relative z-10 flex flex-col justify-center w-full h-full bg-forest/70 lg:bg-transparent"
+            style={{ padding: 'clamp(2rem, 6vw, 4rem)' }}
           >
             <SectionLabel color="var(--color-gold)">Simple as a Message</SectionLabel>
             <h2

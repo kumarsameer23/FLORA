@@ -23,8 +23,8 @@ export default function Footer() {
   return (
     <footer style={{ background: 'var(--color-ink)' }} className="text-white/40">
       {/* Main Footer */}
-      <div className="container-flora py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+      <div className="container-flora py-10 md:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-10 mb-12">
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center gap-2 mb-5">

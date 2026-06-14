@@ -140,7 +140,7 @@ const productSchema = new mongoose.Schema({
 });
 
 // Auto-generate slug
-productSchema.pre('save', function (next) {
+productSchema.pre('save', function () {
   if (this.isModified('name')) {
     this.slug = slugify(this.name, { lower: true, strict: true });
   }
@@ -148,7 +148,6 @@ productSchema.pre('save', function (next) {
   if (this.images && this.images.length > 0 && !this.thumbnail) {
     this.thumbnail = this.images[0].url;
   }
-  next();
 });
 
 // Virtual: discounted price

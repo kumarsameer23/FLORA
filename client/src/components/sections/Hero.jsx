@@ -47,18 +47,18 @@ const itemVariants = {
 export default function Hero() {
   return (
     <>
-      <section className="hero-section relative flex flex-col overflow-hidden h-[100svh] md:h-auto" style={{ minHeight: '100svh' }}>
+      <section className="hero-section relative flex flex-col overflow-hidden" style={{ minHeight: '100svh', minHeight: '100dvh' }}>
         {/* Background */}
         <motion.div
           className="absolute inset-0 z-0"
-          initial={{ scale: (typeof window !== 'undefined' && window.innerWidth < 768) ? 1.55 : 1.08 }}
-          animate={{ scale: (typeof window !== 'undefined' && window.innerWidth < 768) ? 1.35 : 1.02 }}
+          initial={{ scale: 1.12 }}
+          animate={{ scale: 1.02 }}
           transition={{ duration: 14, ease: 'easeOut' }}
         >
           <img
             src={HERO_IMAGE}
             alt="FLORA — Premium plant nursery"
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover object-center"
             loading="eager"
             fetchPriority="high"
           />
@@ -75,7 +75,7 @@ export default function Hero() {
         </div>
 
         {/* Content */}
-        <div className="relative z-[3] flex flex-col justify-center lg:justify-end flex-1 container-flora pt-20 pb-10 lg:pt-0 lg:pb-28">
+        <div className="relative z-[3] flex flex-col justify-end flex-1 container-flora pt-24 pb-8 sm:pb-12 lg:pb-28">
           <motion.div
             variants={containerVariants}
             initial="hidden"

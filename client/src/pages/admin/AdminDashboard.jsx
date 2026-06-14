@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useQuery } from '@tanstack/react-query';
@@ -103,8 +103,13 @@ function AdminWrapper({ children, active, title }) {
   const { user, isAuthenticated } = useAuthStore();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (!isAuthenticated || user?.role !== 'admin') {
+      navigate('/login');
+    }
+  }, [isAuthenticated, user, navigate]);
+
   if (!isAuthenticated || user?.role !== 'admin') {
-    navigate('/login');
     return null;
   }
 

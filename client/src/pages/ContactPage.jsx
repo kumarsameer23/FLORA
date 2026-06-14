@@ -295,7 +295,13 @@ export default function ContactPage() {
                             type="email"
                             className={`input-flora ${errors.email ? 'border-red-400' : ''}`}
                             placeholder="you@example.com"
-                            {...register('email', { required: 'Email is required' })}
+                            {...register('email', {
+                              required: 'Email is required',
+                              pattern: {
+                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                message: 'Invalid email address'
+                              }
+                            })}
                           />
                           {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email.message}</p>}
                         </div>

@@ -382,8 +382,16 @@ select.input-flora {
    Hero
 ─────────────────────────────────────────── */
 .hero-section {
+  min-height: 100vh;
   min-height: 100svh;
   min-height: 100dvh;
+}
+
+/* Fix hero image object-position for mobile so face/center of photo shows */
+@media (max-width: 768px) {
+  .hero-section img {
+    object-position: center 30%;
+  }
 }
 
 /* ───────────────────────────────────────────
@@ -408,6 +416,11 @@ select.input-flora {
 
   .text-heading {
     font-size: clamp(1.6rem, 5vw, 2.2rem);
+  }
+
+  /* About & How-to-Order sections: stack layout on mobile */
+  .hero-section .container-flora {
+    padding-bottom: 4.5rem;
   }
 
 
@@ -460,6 +473,11 @@ select.input-flora {
    About + Categories mobile stack
 ─────────────────────────────────────────── */
 @media (max-width: 767px) {
+  /* Ensure the about/how-to sections are tall enough on mobile */
+  #about .grid,
+  #how-to-order .grid {
+    min-height: 520px;
+  }
 }
 
 /* ───────────────────────────────────────────

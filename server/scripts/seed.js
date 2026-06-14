@@ -373,6 +373,17 @@ const seed = async () => {
     ]);
     console.log('🗑️  Cleared existing data');
 
+    // Seed admin user
+    const adminEmail = process.env.ADMIN_EMAIL || 'singhshivam112002@gmail.com';
+    const adminPassword = process.env.ADMIN_PASSWORD || 'Admin@Flora2024';
+    await User.create({
+      name: 'Admin',
+      email: adminEmail,
+      password: adminPassword,
+      role: 'admin',
+    });
+    console.log('👤 Admin user seeded');
+
     const createdCategories = await Category.insertMany(categories);
     const catMap = {};
     createdCategories.forEach(cat => { catMap[cat.slug] = cat._id; });
