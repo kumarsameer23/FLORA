@@ -10,7 +10,6 @@ const faqItems = [
   { q: 'Are all your plants healthy and pest-free?', a: 'Absolutely! Every plant is individually inspected before dispatch. We guarantee pest-free, disease-free plants — or we replace them for free within 7 days.' },
   { q: 'What if my plant arrives damaged?', a: 'We have a hassle-free replacement policy. If your plant arrives damaged or in poor health, simply WhatsApp us a photo within 7 days of delivery and we\'ll send a replacement.' },
   { q: 'Do you provide care instructions?', a: 'Yes! Every plant comes with a care card. You can also WhatsApp us any time for ongoing support — our plant experts are always available to help your plants thrive.' },
-  { q: 'Can I visit your nursery in person?', a: 'Yes, you are welcome to visit our nursery in Lucknow. Please WhatsApp us to schedule a visit and we\'ll guide you to our location.' },
 ];
 
 const instaHighlights = [

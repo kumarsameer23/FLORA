@@ -47,18 +47,18 @@ const itemVariants = {
 export default function Hero() {
   return (
     <>
-      <section className="hero-section relative flex flex-col overflow-hidden" style={{ minHeight: '100svh' }}>
+      <section className="hero-section relative flex flex-col overflow-hidden h-[100svh] md:h-auto" style={{ minHeight: '100svh' }}>
         {/* Background */}
         <motion.div
           className="absolute inset-0 z-0"
-          initial={{ scale: 1.06 }}
-          animate={{ scale: 1 }}
+          initial={{ scale: (typeof window !== 'undefined' && window.innerWidth < 768) ? 1.55 : 1.08 }}
+          animate={{ scale: (typeof window !== 'undefined' && window.innerWidth < 768) ? 1.35 : 1.02 }}
           transition={{ duration: 14, ease: 'easeOut' }}
         >
           <img
             src={HERO_IMAGE}
             alt="FLORA — Premium plant nursery"
-            className="w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover"
             loading="eager"
             fetchPriority="high"
           />
@@ -66,8 +66,7 @@ export default function Hero() {
 
         {/* Gradient overlay */}
         <div
-          className="absolute inset-0 z-[1]"
-          style={{ background: 'linear-gradient(135deg, rgba(13,26,15,0.97) 0%, rgba(13,26,15,0.65) 55%, rgba(13,26,15,0.25) 100%)' }}
+          className="absolute inset-0 z-[1] bg-[linear-gradient(to_bottom,rgba(13,26,15,0.45)_0%,rgba(13,26,15,0.65)_50%,rgba(13,26,15,0.85)_100%)] lg:bg-[linear-gradient(135deg,rgba(13,26,15,0.97)_0%,rgba(13,26,15,0.65)_55%,rgba(13,26,15,0.25)_100%)]"
         />
 
         {/* Floating leaves — hidden on mobile */}
@@ -76,7 +75,7 @@ export default function Hero() {
         </div>
 
         {/* Content */}
-        <div className="relative z-[3] flex flex-col justify-end flex-1 container-flora pb-16 md:pb-28 pt-28 md:pt-0">
+        <div className="relative z-[3] flex flex-col justify-center lg:justify-end flex-1 container-flora pt-20 pb-10 lg:pt-0 lg:pb-28">
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -84,7 +83,7 @@ export default function Hero() {
             className="max-w-3xl"
           >
             {/* Eyebrow */}
-            <motion.div variants={itemVariants} className="flex items-center gap-3 mb-6 md:mb-8">
+            <motion.div variants={itemVariants} className="flex items-center gap-3 mb-4 md:mb-8">
               <div className="w-8 md:w-12 h-px" style={{ background: 'var(--color-gold)' }} />
               <span className="text-label" style={{ color: 'var(--color-gold)', letterSpacing: '0.32em' }}>
                 Premium Nursery · Est. 2024 · Lucknow
@@ -94,7 +93,7 @@ export default function Hero() {
             {/* Headline */}
             <motion.h1
               variants={itemVariants}
-              className="text-display text-white mb-6 md:mb-8"
+              className="text-display text-white mb-4 md:mb-8"
               style={{ lineHeight: 1.0, letterSpacing: '-0.02em' }}
             >
               Where Every
@@ -112,7 +111,7 @@ export default function Hero() {
             {/* Subheading */}
             <motion.p
               variants={itemVariants}
-              className="text-white/65 font-light max-w-xl mb-10 md:mb-12"
+              className="text-white/65 font-light max-w-xl mb-6 md:mb-12"
               style={{ fontSize: 'clamp(0.95rem, 2vw, 1.15rem)', lineHeight: 1.75 }}
             >
               Rare, beautiful plants curated from the finest nurseries.

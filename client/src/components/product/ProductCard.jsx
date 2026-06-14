@@ -234,24 +234,26 @@ export default function ProductCard({ product, dark = false }) {
 
           {/* Footer */}
           <div
-            className="mt-auto pt-3 border-t flex items-center justify-between gap-2"
+            className="mt-auto pt-3 border-t flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-2"
             style={{ borderColor: dark ? 'rgba(255,255,255,0.08)' : '#e8f2eb' }}
           >
             <div className="min-w-0">
-              <span
-                style={{ fontFamily: 'var(--font-serif)', color: 'var(--color-forest)' }}
-                className="text-xl font-bold"
-              >
-                ₹{finalPrice}
-              </span>
-              {product.originalPrice && product.originalPrice > finalPrice && (
-                <span className={`text-xs line-through ml-2 ${subTextColor}`}>₹{product.originalPrice}</span>
-              )}
+              <div className="flex items-baseline gap-1.5 flex-wrap">
+                <span
+                  style={{ fontFamily: 'var(--font-serif)', color: 'var(--color-forest)' }}
+                  className="text-xl font-bold"
+                >
+                  ₹{finalPrice}
+                </span>
+                {product.originalPrice && product.originalPrice > finalPrice && (
+                  <span className={`text-xs line-through ${subTextColor}`}>₹{product.originalPrice}</span>
+                )}
+              </div>
               <div className={`text-xs ${subTextColor}`}>/ plant</div>
             </div>
             <button
               onClick={(e) => { e.preventDefault(); e.stopPropagation(); setQtyModalOpen(true); }}
-              className="btn btn-wa text-xs px-3 py-2.5 shrink-0"
+              className="btn btn-wa text-xs px-3 py-2.5 w-full sm:w-auto shrink-0 justify-center"
               aria-label={`Order ${product.name} on WhatsApp`}
             >
               <FaWhatsapp size={14} />

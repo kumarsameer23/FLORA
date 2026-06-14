@@ -17,9 +17,6 @@ const footerLinks = {
     { label: 'Our Story', href: '/#about' },
     { label: 'Contact Us', href: '/contact' },
   ],
-  Help: [
-    { label: 'Plant Care Tips', href: 'https://wa.me/917054416071?text=Hi%20FLORA!%20🌿%20I%20need%20some%20care%20tips%20for%20my%20plants.' },
-  ],
 };
 
 export default function Footer() {

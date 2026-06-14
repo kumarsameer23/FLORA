@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { getOptimizedImageUrl } from '../../utils/helpers';
 
 const ABOUT_IMAGE = 'https://images.unsplash.com/photo-1592150621744-aca64f48394a?auto=format&fit=crop&w=900&q=85';
 
@@ -26,16 +27,15 @@ export default function AboutSection() {
 
   return (
     <>
-      {/* ── About Story ── */}
       <section id="about" style={{ background: 'var(--color-ink)' }} ref={ref}>
-        <div className="grid grid-cols-1 lg:grid-cols-2" style={{ minHeight: '560px' }}>
+        <div className="relative grid grid-cols-1 lg:grid-cols-2" style={{ minHeight: 'clamp(480px, 70vw, 560px)' }}>
           {/* Text */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="flex flex-col justify-center"
-            style={{ padding: 'clamp(2.5rem, 6vw, 5rem)' }}
+            className="relative z-10 flex flex-col justify-center w-full h-full bg-ink/15 lg:bg-transparent"
+            style={{ padding: 'clamp(1.5rem, 6vw, 5rem)' }}
           >
             <SectionLabel>Our Story</SectionLabel>
             <h2
@@ -49,7 +49,7 @@ export default function AboutSection() {
               ,<br />delivered with pride
             </h2>
             <p
-              style={{ lineHeight: 1.9, letterSpacing: '0.01em', color: 'rgba(255,255,255,0.55)' }}
+              style={{ lineHeight: 1.9, letterSpacing: '0.01em', color: 'rgba(255,255,255,0.7)' }}
               className="text-sm md:text-base font-light max-w-md"
             >
               For over a year, FLORA has been bringing the beauty of nature into homes across
@@ -63,20 +63,18 @@ export default function AboutSection() {
             initial={{ opacity: 0, x: 40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative overflow-hidden group"
-            style={{ minHeight: 'clamp(280px, 40vw, 500px)' }}
+            className="absolute inset-0 z-0 lg:relative lg:inset-auto lg:z-auto w-full h-full overflow-hidden group"
           >
             <img
               src={ABOUT_IMAGE}
               alt="FLORA nursery interior"
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div
-              className="absolute inset-0"
-              style={{ background: 'linear-gradient(to right, rgba(13,26,15,0.55), transparent)' }}
+              className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_bottom,rgba(13,26,15,0.45)_0%,rgba(13,26,15,0.65)_50%,rgba(13,26,15,0.85)_100%)] lg:bg-gradient-to-r lg:from-ink lg:to-transparent"
             />
             <div
-              className="absolute bottom-6 left-6 px-4 py-2.5 rounded text-sm font-semibold tracking-widest uppercase"
+              className="absolute bottom-6 left-6 px-4 py-2.5 rounded text-sm font-semibold tracking-widest uppercase hidden lg:block"
               style={{ background: 'var(--color-gold)', color: 'var(--color-ink)' }}
             >
               Est. 2024 · Lucknow
@@ -87,25 +85,35 @@ export default function AboutSection() {
 
       {/* ── How to Order ── */}
       <section style={{ background: 'var(--color-forest)' }} id="how-to-order">
-        <div className="grid grid-cols-1 lg:grid-cols-2" style={{ minHeight: '500px' }}>
-          <div className="relative overflow-hidden" style={{ minHeight: '280px' }}>
-            <img
-              src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=900&q=85"
+        <div className="relative grid grid-cols-1 lg:grid-cols-2" style={{ minHeight: 'clamp(520px, 75vw, 600px)' }}>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.98 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+            className="absolute inset-0 z-0 lg:relative lg:inset-auto lg:z-auto w-full h-full overflow-hidden group"
+          >
+            <motion.img
+              initial={{ scale: 1.12 }}
+              whileInView={{ scale: 1 }}
+              whileHover={{ scale: 1.06 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.2, ease: 'easeOut' }}
+              src={getOptimizedImageUrl('/uploads/flora.jpeg')}
               alt="Beautiful plant arrangement"
-              className="w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-cover"
             />
             <div
-              className="absolute inset-0"
-              style={{ background: 'linear-gradient(to right, rgba(22,51,32,0.55), transparent)' }}
+              className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(22,51,32,0.45)_0%,rgba(22,51,32,0.65)_50%,rgba(22,51,32,0.85)_100%)] lg:bg-gradient-to-r lg:from-transparent lg:to-forest/95 pointer-events-none"
             />
-          </div>
+          </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="flex flex-col justify-center"
-            style={{ padding: 'clamp(2.5rem, 6vw, 4rem)' }}
+            className="relative z-10 flex flex-col justify-center w-full h-full bg-forest/15 lg:bg-transparent"
+            style={{ padding: 'clamp(1.5rem, 6vw, 4rem)' }}
           >
             <SectionLabel color="var(--color-gold)">Simple as a Message</SectionLabel>
             <h2

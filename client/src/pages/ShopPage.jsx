@@ -42,7 +42,7 @@ function FilterAccordion({ title, children, defaultOpen = true }) {
       <motion.div
         initial={false}
         animate={{ height: open ? 'auto' : 0, opacity: open ? 1 : 0 }}
-        transition={{ duration: 0.25, ease: 'easeInOut' }}
+        transition={{ duration: 0.16, ease: 'easeOut' }}
         className="overflow-hidden"
       >
         <div className="pb-5 pt-0.5">
@@ -436,7 +436,7 @@ export default function ShopPage() {
                   />
                   <motion.div
                     initial={{ x: -320 }} animate={{ x: 0 }} exit={{ x: -320 }}
-                    transition={{ type: 'spring', damping: 30 }}
+                    transition={{ type: 'spring', stiffness: 220, damping: 25 }}
                     className="fixed left-0 top-0 bottom-0 z-50 w-80 bg-white shadow-2xl"
                   >
                     <FilterSidebar
@@ -493,10 +493,10 @@ export default function ShopPage() {
                         <motion.div
                           key={product._id}
                           layout
-                          initial={{ opacity: 0, scale: 0.9 }}
+                          initial={{ opacity: 0, scale: 0.93 }}
                           animate={{ opacity: 1, scale: 1 }}
-                          exit={{ opacity: 0, scale: 0.9 }}
-                          transition={{ delay: i * 0.05 }}
+                          exit={{ opacity: 0, scale: 0.93 }}
+                          transition={{ duration: 0.24, ease: 'easeOut', delay: Math.min(i * 0.02, 0.2) }}
                         >
                           <ProductCard product={product} />
                         </motion.div>
